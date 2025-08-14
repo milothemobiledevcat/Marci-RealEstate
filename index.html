@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marci Metzger Homes | Modern Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #4b5563;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1f2937;
+        }
+
+        .bg-hero {
+            background-image: url('ht-4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: 90vw;
+            height: 90vh;
+            position: relative;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow-y: auto;
+        }
+
+            .modal-content .image-gallery {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                overflow: hidden;
+            }
+
+            .modal-content .main-image-container {
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+                .modal-content .main-image-container img {
+                    width: 100%;
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: cover;
+                    border-radius: 1rem;
+                }
+
+            .modal-content .thumbnails {
+                display: flex;
+                gap: 0.5rem;
+                overflow-x: auto;
+                flex-shrink: 0;
+                padding-bottom: 0.5rem;
+            }
+
+                .modal-content .thumbnails img {
+                    width: 24;
+                    height: 16;
+                    object-fit: cover;
+                    border-radius: 0.25rem;
+                    cursor: pointer;
+                    border: 2px solid transparent;
+                    transition: border-color 0.3s;
+                }
+
+                    .modal-content .thumbnails img:hover,
+                    .modal-content .thumbnails img.active {
+                        border-color: #3b82f6;
+                    }
+
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+            .fade-in-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="inline-block">
+                <img src="marci-logo.jpg" alt="Marci Metzger Homes Logo" class="h-10">
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-blue-600 transition-colors">Testimonials</a>
+                <a href="#listings" class="text-gray-600 hover:text-blue-600 transition-colors">Listings</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+    <section class="bg-hero h-screen flex items-center justify-center text-center p-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-black-800/50 to-transparent opacity-90"></div>
+        <div class="relative z-10 p-8 rounded-xl max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-xl animate-fade-in-up">MARCI METZGER
+            </h1>
+            <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-xl animate-fade-in-up animation-delay-100">
+                THE RIDGE REALTY GROUP
+            </p>
+            <p class="text-lg sm:text-xl md:text-2xl font-light text-blue-200 drop-shadow-lg mt-4 animate-fade-in-up animation-delay-200">
+                Pahrump Realtor
+            </p>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white fade-in-on-scroll">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3">
+                    <img src="marci.png" alt="Marci Metzger" class="rounded-full shadow-2xl w-full object-cover transform hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="md:w-2/3 text-left">
+                    <h2 class="text-4xl font-bold mb-4">About Marci Metzger</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                        With nearly three decades of experience, Marci Metzger and her dedicated team have a proven track record of success. In 2021 alone, we proudly helped over 90 clients and closed $28.5 million in sales. Our mission is simple: to get your home SOLD by exploring every possible avenue to connect with potential buyers.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Whether you are buying or selling, we offer comprehensive services to guide you through the process, ensuring a smooth and successful transaction.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-gray-100 fade-in-on-scroll">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12">Our Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-blue-600 transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Real Estate Done Right</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Nervous about your property adventure? Don’t be. Whether you're getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible!
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-blue-600 transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-2m2 0a2 2 0 01-2-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 01-2 2m-2 0h-2M7 21h10a2 2 0 002-2v-2a2 2 0 00-2-2H9a2 2 0 00-2 2v2a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Commercial & Residential</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Large or small, condo or mansion, we can find it and get at the price that's right. Fixer-uppers? Luxury? We can help with all of it! We live, work, and play in this community. Happy to help you find where to put you hard-earned dollars.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-blue-600 transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.21a4.2 4.2 0 010 5.62l-3.264 3.265a4.2 4.2 0 01-5.618 0l-3.264-3.265a4.2 4.2 0 010-5.62l3.264-3.264a4.2 4.2 0 015.618 0l3.264 3.264z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Rely on Expertise</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        If you have questions about affordability, credit, and loan options, trust us to connect you with the right people to get the answers you need in a timely fashion. We make sure you feel confident and educated every step of the way.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-blue-600 transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.105 0 2 .895 2 2s-.895 2-2 2-2 .895-2 2-.895 2-2 2M12 21a9 9 0 110-18 9 9 0 010 18z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Financial Guidance</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We can connect you with resources to answer your questions about affordability, credit, and loan options, ensuring you're well-prepared for your real estate journey.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="get-it-sold-carousel" class="py-12 bg-gray-100 fade-in-on-scroll">
+    <div class="container mx-auto px-6">
+<%--        <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 relative">
+            <span class="relative z-10 text-gray-800 tracking-wide">GET IT SOLD</span>
+            <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl text-gray-200 font-extrabold -z-0 opacity-50 select-none">STRATEGY</span>
+        </h2>--%>
+        <div class="relative overflow-hidden rounded-3xl shadow-xl">
+            <div id="carousel-content" class="flex transition-transform duration-700 ease-in-out">
+                <div class="flex-none w-full flex flex-col md:flex-row items-center bg-white">
+                    <div class="md:w-1/2">
+                        <img src="ht-2.jpg" alt="Modern kitchen with large island" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="md:w-1/2 p-8 text-left">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Top Residential Sales Last 5 Years</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm">
+                            We helped nearly 90 clients in 2021, and closed 28.5 million in sales! Our team works hard everyday to grow and learn, so that we may continue to excel in our market. Our clients deserve our best, & we want to make sure our best is better every year.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-none w-full flex flex-col md:flex-row items-center bg-white">
+                    <div class="md:w-1/2 p-8 text-right order-2 md:order-1">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Don't Just List it...</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm">
+                            Get it SOLD! We exhaust every avenue to ensure our listings are at the fingertips of every possible buyer, getting you top dollar for your home.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 order-1 md:order-2">
+                        <img src="ht-3.jpg" alt="Luxury home with a swimming pool" class="w-full h-96 object-cover">
+                    </div>
+                </div>
+                <div class="flex-none w-full flex flex-col md:flex-row items-center bg-white">
+                    <div class="md:w-1/2">
+                        <img src="ht-1.jpg" alt="House keys with a keychain" class="w-full h-96 object-cover">
+                    </div>
+                    <div class="md:w-1/2 p-8 text-left">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Guide to Buyers</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm">
+                            Nobody knows the market like we do. Enjoy having a pro at your service.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed text-sm mt-2">
+                            We connect you with all the resources you'll need to feel confident and educated every step of the way.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button id="carousel-prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-70 hover:opacity-100 transition-opacity z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="carousel-next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-70 hover:opacity-100 transition-opacity z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+        <div id="carousel-indicators" class="flex justify-center mt-6 space-x-2">
+            <button class="w-3 h-3 rounded-full bg-gray-400 opacity-50"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-400 opacity-50"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-400 opacity-50"></button>
+        </div>
+    </div>
+</section>
+
+    <section id="testimonials" class="py-20 bg-white fade-in-on-scroll">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12">What Our Clients Say</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-100 p-6 rounded-2xl shadow-xl">
+                    <img src="p1.jpg" alt="Jane D." class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                    <p class="text-gray-600 italic mb-4 leading-relaxed text-sm">"Marci and her team were incredible! They guided us through every step of the selling process and got us a fantastic offer. Highly recommend their professional and dedicated service."</p>
+                    <p class="font-semibold text-gray-800 text-sm">- Jane D.</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-2xl shadow-xl">
+                    <img src="p2.jpg" alt="Michael R." class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                    <p class="text-gray-600 italic mb-4 leading-relaxed text-sm">"As a first-time home buyer, I was overwhelmed. Marci made the entire experience seamless and stress-free. Her expertise and local knowledge are unmatched."</p>
+                    <p class="font-semibold text-gray-800 text-sm">- Michael R.</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-2xl shadow-xl">
+                    <img src="p3.jpg" alt="Emily P." class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                    <p class="text-gray-600 italic mb-4 leading-relaxed text-sm">"We couldn't have done it without Marci's help. She found us the perfect home in a great neighborhood, and the process was so smooth."</p>
+                    <p class="font-semibold text-gray-800 text-sm">- Emily P.</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-2xl shadow-xl">
+                    <img src="p1.jpg" alt="Sarah T." class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                    <p class="text-gray-600 italic mb-4 leading-relaxed text-sm">"The attention to detail and communication from the team was outstanding. They really put our needs first and exceeded our expectations."</p>
+                    <p class="font-semibold text-gray-800 text-sm">- Sarah T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="listings" class="py-20 bg-gray-100 fade-in-on-scroll">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Available Listings</h2>
+            <div class="bg-white p-6 rounded-2xl shadow-lg mb-12 flex items-center space-x-4">
+                <div class="flex-grow">
+                    <label for="location" class="sr-only">Location</label>
+                    <input type="text" id="location" placeholder="Enter a location" class="block w-full rounded-full border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2">
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-full transition-colors">Search</button>
+            </div>
+            <div id="propertyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+            <div id="pagination" class="flex justify-center items-center mt-12 space-x-2">
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="para" class="py-20 bg-white fade-in-on-scroll">
+        <div class="container mx-auto px-6">
+            <img src="marci-logo.jpg" alt="Marci Metzger Homes Logo" class="h-10" style="width: 200px; height: 100px;">
+            <h3 class="text-4xl font-bold text-gray-800 mb-8 leading-tight">Come experience the difference at Marci Metzger.</h3>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                What sets us apart isn't just our elegant spaces or premium amenities – it's the authentic hospitality that greets you at every turn. Here at Marci Metzger, we believe luxury shouldn't feel stiff or unapproachable. Instead, we’ve created an environment where top notch service feels natural and personal, where every guest is welcomed as someone special, and where comfort and elegance go hand in hand.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section id="contact" class="py-20 bg-gray-100 fade-in-on-scroll">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-16 relative">
+                <span class="relative z-10 text-gray-800">Contact Us</span>
+                <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl text-gray-200 font-extrabold -z-0 opacity-50 select-none">GET IN TOUCH</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-between transform transition-all duration-500 hover:shadow-2xl hover:scale-105">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Send Us a Message</h3>
+                        <p class="text-gray-600 text-sm">
+                            Have a question? Fill out the form, and our team will get back to you.
+                        </p>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" placeholder="John Doe" class="mt-1 block w-full rounded-lg border-gray-300 bg-gray-50 shadow-sm focus:border-gray-500 focus:ring-gray-500 px-4 py-2.5">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" placeholder="john.doe@example.com" class="mt-1 block w-full rounded-lg border-gray-300 bg-gray-50 shadow-sm focus:border-gray-500 focus:ring-gray-500 px-4 py-2.5">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="message" rows="4" placeholder="Your message..." class="mt-1 block w-full rounded-lg border-gray-300 bg-gray-50 shadow-sm focus:border-gray-500 focus:ring-gray-500 px-4 py-2.5"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-md transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-start transform transition-all duration-500 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Our Details</h3>
+                    <ul class="space-y-6 text-gray-600">
+                        <li class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-lg text-gray-800">Address</p>
+                                <p>1101 S Frontage Rd, Pahrump, NV</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.26.974a11.034 11.034 0 0010.518 10.518l.974-2.26a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-lg text-gray-800">Phone</p>
+                                <p>206-919-6886</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-lg text-gray-800">Email</p>
+                                <p>info@marcimetzgerhomes.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <a href="https://facebook.com" class="flex items-start space-x-4 text-gray-600 hover:text-gray-800 transition-colors">
+                                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8 flex-shrink-0" viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-lg text-gray-800">Facebook</p>
+                                    <p>@marcimitzgerhomes</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <a href="https://instagram.com" class="flex items-start space-x-4 text-gray-600 hover:text-gray-800 transition-colors">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8 flex-shrink-0" viewBox="0 0 24 24">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-lg text-gray-800">Instagram</p>
+                                    <p>@marcimitzgerhomes</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-start transform transition-all duration-500 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Our Location</h3>
+                    <div class="h-72 rounded-xl overflow-hidden shadow-lg">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3221.7589993358245!2d-116.01258602361738!3d36.21666667246471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80b62e49c704f5b5%3A0x6b006c9a9d20c5b!2s1101%20S%20Frontage%20Rd%2C%20Pahrump%2C%20NV%2089048%2C%20USA!5e0!3m2!1sen!2s!4v1723652390881!5m2!1sen!2s"
+                            width="100%"
+                            height="100%"
+                            style="border: 0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="flex flex-col space-y-4">
+                    <h3 class="text-3xl font-bold text-white tracking-wide">Marci Metzger Homes</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Expert guidance from Marci Metzger Homes, with nearly three decades of dedicated service. We help you find your perfect home.
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Useful Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#listings" class="text-gray-400 hover:text-white transition-colors">Listings</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Privacy</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Have a Questions?</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-gray-400">1101 S Frontage Rd, Pahrump, NV</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.26.974a11.034 11.034 0 0010.518 10.518l.974-2.26a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-gray-400">206-919-6886</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-gray-400">info@marcimetzgerhomes.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Marci Metzger Homes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="modal-close-button">&times;</span>
+        <div class="modal-content">
+            <div class="image-gallery">
+                <div class="main-image-container">
+                    <img id="modalMainImage" src="" alt="Main Property Image">
+                </div>
+                <div class="thumbnails" id="modalThumbnails">
+                </div>
+            </div>
+            <div id="modalTextContent" class="text-left text-gray-800 p-4 overflow-y-auto">
+                <h3 id="modalTitle" class="text-3xl font-bold mb-2"></h3>
+                <div id="modalRating" class="flex items-center space-x-1 text-yellow-400 mb-4"></div>
+                <p id="modalIntroduction" class="text-lg mb-6"></p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <p id="modalPrice" class="text-2xl font-bold text-blue-600"></p>
+                    <p id="modalLocation" class="text-lg text-gray-600"></p>
+                </div>
+                <h4 class="text-2xl font-semibold mt-4 mb-2">Property Features</h4>
+                <ul id="modalDetails" class="list-disc list-inside text-gray-600 text-lg"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fade-in-on-scroll Animations
+            const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            elementsToAnimate.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mock Data for Properties
+            const properties = [{
+                id: 1,
+                image: 'ht-1.jpg',
+                title: 'Grnd Suite',
+                type: 'Property Type: Apartments',
+                introduction: 'A luxurious apartment with modern amenities, perfect for a short or long stay. It features a spacious living area and an incredible view of the city skyline.',
+                details: [
+                    'Bed and Breakfast included',
+                    'Room Facilities: Washing Machine',
+                    'Bed Preference: King',
+                    'Free Wi-Fi',
+                    '24/7 Concierge'
+                ],
+                location: 'Location: Bacolod City',
+                price: 'Price: $150.00',
+                rating: 5,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }, {
+                id: 2,
+                image: 'ht-2.jpg',
+                title: 'Oasis',
+                type: 'Property Type: Villas',
+                introduction: 'Escape to this serene villa, offering a private terrace and a tranquil pool area. A perfect hideaway from the city hustle, with all the comforts of home.',
+                details: [
+                    'Meals: Self Catering',
+                    'Room Facilities: Terrace',
+                    'Bed Preference: Twin',
+                    'Private Pool',
+                    'BBQ Area'
+                ],
+                location: 'Location: Bacolod City',
+                price: 'Price: $200.00',
+                rating: 4.5,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }, {
+                id: 3,
+                image: 'ht-1.jpg',
+                title: 'Lantern Lodge',
+                type: 'Property Type: Villas',
+                introduction: 'A charming lodge with a rustic feel, perfect for a peaceful getaway. The lodge is surrounded by lush greenery and offers a cozy, intimate atmosphere.',
+                details: [
+                    'Facilities: Airport Shuttle',
+                    'Meals: Breakfast included',
+                    'Room Facilities: Bath',
+                    'Fireplace',
+                    'Hiking Trails'
+                ],
+                location: 'Location: Angeles City',
+                price: 'Price: $200.00',
+                rating: 4,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }, {
+                id: 4,
+                image: 'ht-3.jpg',
+                title: 'Coastal Bungalow',
+                type: 'Property Type: House',
+                introduction: 'Enjoy breathtaking ocean views from this elegant coastal bungalow, complete with a private pool. It is the ideal spot for a relaxing beach vacation with family and friends.',
+                details: [
+                    'Ocean views',
+                    'Private pool',
+                    'Bed Preference: King',
+                    'Private beach access',
+                    'Outdoor kitchen'
+                ],
+                location: 'Location: Miami Beach',
+                price: 'Price: $500.00',
+                rating: 5,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }, {
+                id: 5,
+                image: 'ht-2.jpg',
+                title: 'Mountain Retreat',
+                type: 'Property Type: Cabin',
+                introduction: 'A cozy cabin nestled in the mountains, perfect for a quiet retreat or a skiing adventure. The rustic charm and breathtaking scenery will make for an unforgettable stay.',
+                details: [
+                    'Fireplace',
+                    'Ski-in/ski-out access',
+                    'Bed Preference: Queen',
+                    'Jacuzzi',
+                    'Sauna'
+                ],
+                location: 'Location: Aspen',
+                price: 'Price: $450.00',
+                rating: 4.8,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }, {
+                id: 6,
+                image: 'ht-1.jpg',
+                title: 'City Loft',
+                type: 'Property Type: Condo',
+                introduction: 'A modern urban loft with stunning city views and convenient access to all downtown amenities. This sleek, high-rise apartment is perfect for the modern professional.',
+                details: [
+                    'Rooftop terrace',
+                    'Gym access',
+                    'Bed Preference: King',
+                    '24/7 Security',
+                    'Concierge Service'
+                ],
+                location: 'Location: New York City',
+                price: 'Price: $300.00',
+                rating: 4.2,
+                gallery: [
+                    'ht-1.jpg',
+                    'ht-2.jpg',
+                    'ht-3.jpg',
+                    'ht-3.jpg'
+                ]
+            }];
+
+            const propertyGrid = document.getElementById('propertyGrid');
+            const paginationContainer = document.getElementById('pagination');
+
+            const propertiesPerPage = 3;
+            let currentPage = 1;
+
+            const renderProperties = (page) => {
+                propertyGrid.innerHTML = '';
+                const startIndex = (page - 1) * propertiesPerPage;
+                const endIndex = startIndex + propertiesPerPage;
+                const propertiesToShow = properties.slice(startIndex, endIndex);
+
+                propertiesToShow.forEach(property => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl';
+                    card.innerHTML = `
+                    <img src="${property.image}" alt="${property.title}" class="w-full h-56 object-cover">
+                    <div class="p-4 text-left">
+                        <h3 class="text-xl font-bold mb-1">${property.title}</h3>
+                        <p class="text-sm text-gray-600 mb-1">${property.type}</p>
+                        <p class="text-lg font-semibold text-blue-600 mb-2">${property.price}</p>
+                        <p class="text-gray-500 text-sm">${property.location}</p>
+                        <div class="mt-4 flex space-x-2">
+                            <button class="inquire-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-all">Inquire Now</button>
+                            <button class="view-btn bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full transition-all">View Details</button>
+                        </div>
+                    </div>
+                `;
+                    card.querySelector('.view-btn').onclick = (e) => {
+                        e.preventDefault();
+                        openModal(property);
+                    };
+                    card.querySelector('.inquire-btn').onclick = (e) => {
+                        e.preventDefault();
+                        console.log(`Inquiring about ${property.title}`);
+                    };
+                    propertyGrid.appendChild(card);
+                });
+            };
+
+            const renderPagination = () => {
+                paginationContainer.innerHTML = '';
+                const totalPages = Math.ceil(properties.length / propertiesPerPage);
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = i;
+                    pageButton.className = `w-10 h-10 rounded-full font-bold transition-colors ${i === currentPage ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        renderProperties(currentPage);
+                        renderPagination();
+                    });
+                    paginationContainer.appendChild(pageButton);
+                }
+            };
+
+            renderProperties(currentPage);
+            renderPagination();
+
+            const modal = document.getElementById('imageModal');
+            const modalMainImage = document.getElementById('modalMainImage');
+            const modalThumbnails = document.getElementById('modalThumbnails');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalRating = document.getElementById('modalRating');
+            const modalIntroduction = document.getElementById('modalIntroduction');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalLocation = document.getElementById('modalLocation');
+            const modalDetails = document.getElementById('modalDetails');
+            const modalTextContent = document.getElementById('modalTextContent');
+            const closeButton = document.querySelector('.modal-close-button');
+            let inquireButtonModal = document.getElementById('inquireButtonModal');
+
+            window.openModal = (property) => {
+                modal.style.display = 'flex';
+                modalMainImage.src = property.gallery[0];
+                modalThumbnails.innerHTML = '';
+                property.gallery.forEach((imgUrl, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = imgUrl;
+                    thumb.alt = `Thumbnail ${index + 1}`;
+                    thumb.className = 'w-24 h-16 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-blue-500 transition-colors';
+                    if (index === 0) {
+                        thumb.classList.add('active');
+                    }
+                    thumb.onclick = () => {
+                        modalMainImage.src = imgUrl;
+                        document.querySelectorAll('.thumbnails img').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    };
+                    modalThumbnails.appendChild(thumb);
+                });
+
+                modalTitle.textContent = property.title;
+                modalIntroduction.textContent = property.introduction;
+                modalPrice.textContent = property.price;
+                modalLocation.textContent = property.location;
+
+                modalRating.innerHTML = '';
+                const fullStars = Math.floor(property.rating);
+                const hasHalfStar = property.rating % 1 !== 0;
+
+                for (let i = 0; i < fullStars; i++) {
+                    modalRating.innerHTML += `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.696h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.696l1.07-3.292z" /></svg>`;
+                }
+
+                if (hasHalfStar) {
+                    modalRating.innerHTML += `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.696h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.696l1.07-3.292z" clip-rule="evenodd" /></svg>`;
+                }
+
+                modalDetails.innerHTML = '';
+                property.details.forEach(detail => {
+                    const li = document.createElement('li');
+                    li.textContent = detail;
+                    modalDetails.appendChild(li);
+                });
+
+                // Check if the button already exists to prevent duplicates
+                if (!inquireButtonModal) {
+                    inquireButtonModal = document.createElement('button');
+                    inquireButtonModal.id = 'inquireButtonModal';
+                    inquireButtonModal.textContent = 'Inquire Now';
+                    inquireButtonModal.className = 'w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg transform hover:scale-105';
+                    inquireButtonModal.onclick = () => {
+                        console.log(`Inquiring about ${property.title} from the modal.`);
+                        closeModal();
+                    };
+                    modalTextContent.appendChild(inquireButtonModal);
+                }
+            };
+
+            const closeModal = () => {
+                modal.style.display = 'none';
+                modalMainImage.src = '';
+                modalThumbnails.innerHTML = '';
+                modalTitle.textContent = '';
+                modalIntroduction.textContent = '';
+                modalPrice.textContent = '';
+                modalLocation.textContent = '';
+                modalDetails.innerHTML = '';
+
+                // Remove the button if it exists
+                if (inquireButtonModal) {
+                    inquireButtonModal.remove();
+                    inquireButtonModal = null; // Reset the variable
+                }
+            };
+
+            closeButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target.id === 'imageModal') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.getElementById('carousel-content');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+            const indicatorsContainer = document.getElementById('carousel-indicators');
+            const slides = carousel.children;
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            let intervalId;
+            const autoSlideInterval = 5000; // 5 seconds
+
+            const updateCarousel = () => {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators();
+            };
+
+            const updateIndicators = () => {
+                const indicators = indicatorsContainer.children;
+                for (let i = 0; i < indicators.length; i++) {
+                    indicators[i].classList.remove('active-indicator');
+                    indicators[i].classList.remove('bg-gray-800', 'opacity-100');
+                    indicators[i].classList.add('bg-gray-400', 'opacity-50');
+                }
+                indicators[currentIndex].classList.add('active-indicator');
+                indicators[currentIndex].classList.remove('bg-gray-400', 'opacity-50');
+                indicators[currentIndex].classList.add('bg-gray-800', 'opacity-100');
+            };
+
+            const nextSlide = () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            };
+
+            const prevSlide = () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            };
+
+            // Auto-move functionality
+            const startAutoSlide = () => {
+                intervalId = setInterval(nextSlide, autoSlideInterval);
+            };
+
+            const stopAutoSlide = () => {
+                clearInterval(intervalId);
+            };
+
+            // Event listeners for manual navigation
+            nextButton.addEventListener('click', () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            });
+
+            prevButton.addEventListener('click', () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            });
+
+            // Event listeners for indicators
+            indicatorsContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    stopAutoSlide();
+                    const newIndex = Array.from(indicatorsContainer.children).indexOf(e.target);
+                    currentIndex = newIndex;
+                    updateCarousel();
+                    startAutoSlide();
+                }
+            });
+
+            // Pause auto-move on hover
+            const carouselContainer = document.getElementById('get-it-sold-carousel').querySelector('.relative');
+            carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+            carouselContainer.addEventListener('mouseleave', startAutoSlide);
+
+            // Initial setup
+            updateCarousel();
+            startAutoSlide();
+        });
+    </script>
+
+</body>
+</html>
